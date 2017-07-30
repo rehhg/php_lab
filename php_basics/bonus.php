@@ -6,13 +6,13 @@ $b = "";
 echo compareAndSum($a, $b);
 
 function compareAndSum($str1, $str2) {
-    $arr1 = putCharsIntoArray($str1);
-    $arr2 = putCharsIntoArray($str2);
+    $arr1 = putAsciiCharsIntoArray($str1);
+    $arr2 = putAsciiCharsIntoArray($str2);
 
-    return (array_sum($arr1) == array_sum($arr2)) ? true : false;
+    return array_sum($arr1) === array_sum($arr2);
 }
 
-function putCharsIntoArray($str) {
+function putAsciiCharsIntoArray($str) {
     $arr = [];
     for ($i = 0; $i < strlen($str); $i++) {
         
