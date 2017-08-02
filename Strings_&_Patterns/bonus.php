@@ -20,28 +20,9 @@ function bandName($name) {
 // 2
 echo "<br />";
 
+echo converter('GTAT') . "<br />";
 echo converter('ATTGC');
 
 function converter($string) {
-    $length = strlen($string);
-    $newString = '';
-    
-    for($i = 0; $i < $length; $i++) {
-        switch($string[$i]) {
-            case 'A':
-                $newString .= 'T';
-                break;
-            case 'T':
-                $newString .= 'A';
-                break;
-            case 'G':
-                $newString .= 'C';
-                break;
-            case 'C':
-                $newString .= 'G';
-                break;
-        }
-    }
-    
-    return $newString;
+    return strtr($string, 'ATCG', 'TAGC');
 }

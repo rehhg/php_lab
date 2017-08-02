@@ -1,8 +1,12 @@
 <?php
 
 // 1
-$str = "var_test_text";
-$newStr = str_replace("_t", "T", $str);
+$str = "var_test_fail";
+$newStr = preg_replace_callback("/_[a-z]{1}/", function($matches) {
+    $matched = substr($matches[0], 1);
+    return strtoupper($matched);
+    }, $str);
+    
 echo $newStr;
 
 // 2
@@ -23,13 +27,8 @@ echo "<br />";
 $a = [342, 55, 33, 123, 66, 63, 9];
 
 foreach ($a as $value) {
-    $value = (string)$value;
-    
-    for($i = 0; $i < strlen($value); $i++) {
-        if($value[$i] == '3') {
-            echo $value . ' ';
-            break;
-        }
+    if(preg_match('/[3]+/', $value)){
+        echo $value . ' ';
     }
 }
 
@@ -39,12 +38,8 @@ $a = [342, 55, 33, 123, 66, 63, 9];
 
 $sum = 0;
 foreach ($a as $value) {
-    $value = (string)$value;
-    
-    for($i = 0; $i < strlen($value); $i++) {
-        if($value[$i] == '3') {
-            $sum++;
-        }
+    if(preg_match('/[3]+/', $value, $matches)){
+        $sum += strlen($matches[0]);
     }
 }
 echo $sum;
