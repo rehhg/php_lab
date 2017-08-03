@@ -19,13 +19,18 @@ $temperatures = array(33, 15, 17, 20, 23, 23, 28, 40, 21, 19, 31, 18, 30, 31,
 
 temeprature($temperatures);
 
-function temeprature($arr) {
-    sort($arr);
+function temeprature($array) {
+    sort($array);
+    $arrayUnique = array_unique($array);
+    $arr = [];
+    foreach($arrayUnique as $value) {
+        $arr[] = $value;
+    }
     $length = count($arr);
     
     echo 'Three lowest tepmeratures are ' . $arr[0] . ', ' . $arr[1] . ', ' . $arr[2] . '<br />';
     echo 'Three highest tepmeratures are ' . $arr[$length-1] . ', ' . $arr[$length-2] . ', ' . $arr[$length-3] . '<br />';
-    echo 'Three middle tepmeratures are ' . $arr[($length-1)/2] . ', ' . $arr[($length-2)/2] . ', ' . $arr[$length/2] . '<br />';
+    echo 'Three middle tepmeratures are ' . $arr[ceil(($length)/2)] . ', ' . $arr[($length-1)/2] . ', ' . $arr[($length-2)/2] . '<br />';
 }
 
 // 3
