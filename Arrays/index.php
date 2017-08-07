@@ -10,7 +10,7 @@ foreach ($arr as $value) {
     $index += $value;
 }
 
-print_r($newArr);
+//print_r($newArr);
 
 // 2
 echo "<br />";
@@ -22,11 +22,21 @@ temeprature($temperatures);
 
 function temeprature($array) {
     sort($array);
-    $temperatures = array_chunk($array, count($array) / 3);
     $length = count($array);
 
-    echo 'Three lowest tepmeratures are ' . $temperatures[0][0] . ', ' . $temperatures[0][1] . ', ' . $temperatures[0][2] . '<br />';
-    echo 'Three middle tepmeratures are ' . $temperatures[1][0] . ', ' . $temperatures[1][1] . ', ' . $temperatures[1][2] . '<br />';
+    $avgTemperatures = round(array_sum($array) / count($array));
+    
+    foreach ($array as $key => $value) {
+        if($value > $avgTemperatures) {
+            $temperatures = array_slice($array, $key);
+            break;
+        }
+    }
+    $tempArrayKeys = array_search(array_shift($temperatures), $array); 
+    $averageArray = array_slice($array, $tempArrayKeys - 1, 3);
+
+    echo 'Three lowest tepmeratures are ' . $array[0] . ', ' . $array[1] . ', ' . $array[2] . '<br />';
+    echo 'Three middle tepmeratures are ' . $averageArray[0] . ', ' . $averageArray[1] . ', ' . $averageArray[2] . '<br />';
     echo 'Three highest tepmeratures are ' . $array[$length - 3] . ', ' . $array[$length - 2] . ', ' . $array[$length - 1] . '<br />';
 }
 
@@ -76,13 +86,9 @@ function sorter($key) {
 }
 
 function filterTags($arr) {
-    $newArr = [];
-    foreach ($arr as $key => $value) {
-        if (array_key_exists("tags", $value) && in_array("php", $value["tags"])) {
-            $newArr[] = $value;
-        }
-    }
-
+    $newArr = array_filter($arr, function($value) {
+        return array_key_exists("tags", $value) && in_array("php", $value["tags"]) ? $value : false;
+    });
     return $newArr;
 }
 
