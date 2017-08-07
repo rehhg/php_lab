@@ -30,23 +30,23 @@ function findIndex($arr) {
 }
 
 // 1 alternative function
-//$arr1 = [20, 10, -80, 10, 10, 15, 35];
-//$arr2 = [10, -80, 10, 10, 15, 35];
-//
-//echo findIndex($arr1) . ' ';
-//echo findIndex($arr2);
-//
-//
-//function findIndex($arr) {
-//    $sum = 0;
-//    foreach ($arr as $index => $value) {
-//        $sum += $value;
-//        if ($sum === array_sum(array_slice($arr, $index))) {
-//            return $index;
-//        }
-//    }
-//    return -1;
-//}
+$arr1 = [20, 10, -80, 10, 10, 15, 35];
+$arr2 = [10, -80, 10, 10, 15, 35];
+
+echo findIndex($arr1) . ' ';
+echo findIndex($arr2);
+
+
+function findIndex($arr) {
+    $sum = 0;
+    foreach ($arr as $index => $value) {
+        $sum += $value;
+        if ($sum === array_sum(array_slice($arr, $index))) {
+            return $index;
+        }
+    }
+    return -1;
+}
 
 // 2
 echo '<br />';
