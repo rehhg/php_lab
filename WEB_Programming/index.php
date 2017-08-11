@@ -15,13 +15,8 @@ $domain = 'dotcom.com';
 print_r(checkdomainName($domain));
 
 function checkdomainName($domain) {
-    return dns_get_record($domain);
+    return dns_get_record($domain) ? true : false;
 }
-
-// another good way
-//function checkdomainName($domain) {
-//    return getmxrr($domain, $host) ? true : false;
-//}
 
 // 1.3 
 //header("HTTP/1.1 301 Moved Permanently");
@@ -95,10 +90,7 @@ $smiles = [';]', ':[', ';*', ':$', ';-D'];
 print_r(countSmiles($smiles));
 
 function countSmiles($smiles) {
-    $result = array_filter($smiles, function($value) {
-        preg_match_all('/(:|;){1}(-|~)?(\)|D){1}/', $value, $matches);
-        return $matches[0];
-    });
+    $result = preg_grep('/(:|;){1}(-|~)?(\)|D){1}/', $smiles);
     
     return count($result);
 }
