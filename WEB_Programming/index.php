@@ -50,12 +50,10 @@ function sortArray($array, $index, $length = null) {
     sort($slicedArray);
     
     if($length) {
-        $result = array_merge(array_merge($chunkedArray[0], $slicedArray), array_splice($array, $index + $length));
-        return $result;
+        return array_merge(array_merge($chunkedArray[0], $slicedArray), array_splice($array, $index + $length));
     }
 
-    $result = array_merge($chunkedArray[0], $slicedArray);
-    return $result;
+    return array_merge($chunkedArray[0], $slicedArray);
 }
 
 // 4
